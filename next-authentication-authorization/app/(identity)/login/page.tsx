@@ -32,7 +32,7 @@ export default function Page() {
             Welcome back!
           </h1>
           <p className="text-center text-sm text-muted-foreground">
-            Enter your email and password
+            Please enter your details to access your account.
           </p>
 
           <Form />

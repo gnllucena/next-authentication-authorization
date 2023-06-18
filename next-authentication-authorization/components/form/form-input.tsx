@@ -11,12 +11,18 @@ import {
 
 import { Input } from "../ui/input"
 
-export function FormInput(props: ControllerRenderProps) {
+interface FormInputProps extends ControllerRenderProps {
+  label: string
+}
+
+export function FormInput(props: FormInputProps) {
+  const { label, ...field } = props
+
   return (
     <FormItem>
-      <FormLabel className="w-full">Email</FormLabel>
+      <FormLabel>{label}</FormLabel>
       <FormControl>
-        <Input placeholder="Your email" {...props} />
+        <Input placeholder="Your email" {...field} />
       </FormControl>
       <FormMessage />
     </FormItem>

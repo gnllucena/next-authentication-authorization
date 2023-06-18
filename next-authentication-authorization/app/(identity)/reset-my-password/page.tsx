@@ -30,7 +30,7 @@ export default function Page() {
             Choose a new password
           </h1>
           <p className="text-sm text-muted-foreground">
-            Enter your email, emailed code and new password
+            Enter your new password below to reset it.
           </p>
         </div>
 

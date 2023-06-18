@@ -30,7 +30,7 @@ export default function Page() {
             Create an account
           </h1>
           <p className="text-sm text-muted-foreground">
-            Enter your email below to create your account
+            Please enter your information below to create your account.
           </p>
         </div>
 
