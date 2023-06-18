@@ -1,41 +1,19 @@
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Check, ChevronsUpDown } from "lucide-react"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
 
-import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-} from "@/components/ui/command"
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover"
 import { toast } from "@/components/ui/use-toast"
-import {
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-  Form as FormReactHookForm,
-} from "@/components/form/form"
-import { FormDatePicker } from "@/components/form/form-date-picker"
-import { FormInput } from "@/components/form/form-input"
-import { FormSelect } from "@/components/form/form-select"
+import { DatePicker } from "@/components/form/date-picker"
+import { Form as FormReactHookForm } from "@/components/form/form"
+import { Input } from "@/components/form/input"
+import { Select } from "@/components/form/select"
 
 const accountFormSchema = z.object({
   email: z
-    .string()
+    .string({ required_error: "A email is required." })
     .min(2, {
       message: "Name must be at least 2 characters.",
     })
@@ -78,22 +56,25 @@ export function Form() {
   return (
     <FormReactHookForm {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <FormField
-          control={form.control}
+        <Input
           name="email"
-          render={({ field }) => <FormInput label="Email" {...field} />}
+          label="Email"
+          placeholder="Your email"
+          form={form}
         />
 
-        <FormField
-          control={form.control}
+        <DatePicker
           name="dob"
-          render={({ field }) => <FormDatePicker {...field} />}
+          label="Date of birth"
+          placeholder="Pick a date"
+          form={form}
         />
 
-        <FormField
-          control={form.control}
+        <Select
           name="language"
-          render={({ field }) => <FormSelect {...field} />}
+          label="Language"
+          placeholder="Select a language"
+          form={form}
         />
 
         <div className="text-center">
