@@ -8,7 +8,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/form/form"
+} from "@/components/form/react-hook-form"
 
 import { Input as InputUI } from "../ui/input"
 

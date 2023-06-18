@@ -7,11 +7,11 @@ import * as z from "zod"
 import { Button } from "@/components/ui/button"
 import { toast } from "@/components/ui/use-toast"
 import { DatePicker } from "@/components/form/date-picker"
-import { Form as FormReactHookForm } from "@/components/form/form"
 import { Input } from "@/components/form/input"
+import { Form as FormReactHookForm } from "@/components/form/react-hook-form"
 import { Select } from "@/components/form/select"
 
-const accountFormSchema = z.object({
+const loginSchema = z.object({
   email: z
     .string({ required_error: "A email is required." })
     .min(2, {
@@ -28,21 +28,19 @@ const accountFormSchema = z.object({
   }),
 })
 
-type AccountFormValues = z.infer<typeof accountFormSchema>
-
-// This can come from your database or API.
-const defaultValues: Partial<AccountFormValues> = {
-  // name: "Your name",
-  // dob: new Date("2023-01-23"),
-}
+type LoginSchema = z.infer<typeof loginSchema>
 
 export function Form() {
-  const form = useForm<AccountFormValues>({
-    resolver: zodResolver(accountFormSchema),
-    defaultValues,
+  const form = useForm<LoginSchema>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: {
+      email: "gnllucena@gmail.com",
+      dob: new Date(),
+      language: "en",
+    } as Partial<LoginSchema>,
   })
 
-  function onSubmit(data: AccountFormValues) {
+  function onSubmit(data: LoginSchema) {
     toast({
       title: "You submitted the following values:",
       description: (

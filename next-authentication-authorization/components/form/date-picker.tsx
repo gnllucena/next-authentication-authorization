@@ -18,7 +18,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/form/form"
+} from "@/components/form/react-hook-form"
 
 interface DatePickerProps {
   name: string
@@ -46,7 +46,7 @@ export function DatePicker({
                 <Button
                   variant={"outline"}
                   className={cn(
-                    "w-[240px] pl-3 text-left font-normal",
+                    "w-full pl-3 text-left font-normal",
                     !field.value && "text-muted-foreground"
                   )}
                 >
