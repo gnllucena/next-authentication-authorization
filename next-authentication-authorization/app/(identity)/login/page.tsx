@@ -3,7 +3,7 @@ import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 
-import { FormLogin } from "./components/form-login"
+import { Form } from "./components/form"
 
 export default function Page() {
   return (
@@ -27,15 +27,15 @@ export default function Page() {
         Forgot you password?
       </Link>
       <div className="mx-auto flex min-h-screen max-w-[350px] flex-col justify-center space-y-6">
-        <div className="flex flex-col space-y-2 text-center">
-          <h1 className="text-2xl font-semibold tracking-tight">
+        <div className="flex flex-col space-y-2 ">
+          <h1 className="text-center text-2xl font-semibold tracking-tight">
             Welcome back!
           </h1>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-center text-sm text-muted-foreground">
             Enter your email and password
           </p>
 
-          <FormLogin />
+          <Form />
         </div>
 
         <p className="px-8 text-center text-sm text-muted-foreground">

@@ -23,6 +23,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import { toast } from "@/components/ui/use-toast"
+import { FormInput } from "@/components/form/form-input"
 import {
   FormControl,
   FormDescription,
@@ -46,7 +47,7 @@ const languages = [
 ] as const
 
 const accountFormSchema = z.object({
-  name: z
+  email: z
     .string()
     .min(2, {
       message: "Name must be at least 2 characters.",
@@ -70,7 +71,7 @@ const defaultValues: Partial<AccountFormValues> = {
   // dob: new Date("2023-01-23"),
 }
 
-export function FormLogin() {
+export function Form() {
   const form = useForm<AccountFormValues>({
     resolver: zodResolver(accountFormSchema),
     defaultValues,
@@ -92,21 +93,10 @@ export function FormLogin() {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
           control={form.control}
-          name="name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Name</FormLabel>
-              <FormControl>
-                <Input placeholder="Your name" {...field} />
-              </FormControl>
-              <FormDescription>
-                This is the name that will be displayed on your profile and in
-                emails.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
+          name="email"
+          render={({ field }) => <FormInput {...field} />}
         />
+
         <FormField
           control={form.control}
           name="dob"
@@ -212,7 +202,10 @@ export function FormLogin() {
             </FormItem>
           )}
         />
-        <Button type="submit">Update account</Button>
+
+        <div className="text-center">
+          <Button type="submit">Update account</Button>
+        </div>
       </form>
     </FormReactHookForm>
   )
