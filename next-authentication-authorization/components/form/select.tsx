@@ -60,7 +60,7 @@ export function Select({ name, label, placeholder, form }: SelectProps) {
                   variant="outline"
                   role="combobox"
                   className={cn(
-                    "w-[200px] justify-between",
+                    "w-full justify-between",
                     !field.value && "text-muted-foreground"
                   )}
                 >
@@ -73,7 +73,7 @@ export function Select({ name, label, placeholder, form }: SelectProps) {
                 </Button>
               </FormControl>
             </PopoverTrigger>
-            <PopoverContent className="w-[200px] p-0">
+            <PopoverContent className="w-full p-0 self-auto">
               <Command>
                 <CommandInput placeholder="Search language..." />
                 <CommandEmpty>No language found.</CommandEmpty>
