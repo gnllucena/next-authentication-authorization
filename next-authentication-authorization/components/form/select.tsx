@@ -59,7 +59,7 @@ export function Select({
   return (
     <FormField
       control={form.control}
-      name="language"
+      name={name}
       render={({ field }) => (
         <FormItem className="flex flex-col">
           <FormLabel>{label}</FormLabel>

@@ -7,8 +7,8 @@ import * as z from "zod"
 import { Button } from "@/components/ui/button"
 import { toast } from "@/components/ui/use-toast"
 import { DatePicker } from "@/components/form/date-picker"
+import { Form } from "@/components/form/form"
 import { Input } from "@/components/form/input"
-import { Form as FormReactHookForm } from "@/components/form/react-hook-form"
 import { Select } from "@/components/form/select"
 
 const loginSchema = z.object({
@@ -30,7 +30,7 @@ const loginSchema = z.object({
 
 type LoginSchema = z.infer<typeof loginSchema>
 
-export function Form() {
+export function FormLogin() {
   const form = useForm<LoginSchema>({
     resolver: zodResolver(loginSchema),
     defaultValues: {} as Partial<LoginSchema>,
@@ -48,37 +48,30 @@ export function Form() {
   }
 
   return (
-    <FormReactHookForm {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 pt-4">
-        <Input
-          name="email"
-          label="Email"
-          placeholder="Your email"
-          form={form}
-        />
+    <Form onSubmit={onSubmit} form={form}>
+      <Input name="email" label="Email" placeholder="Your email" form={form} />
 
-        <DatePicker
-          name="dob"
-          label="Date of birth"
-          placeholder="Pick a date"
-          form={form}
-        />
+      <DatePicker
+        name="dob"
+        label="Date of birth"
+        placeholder="Pick a date"
+        form={form}
+      />
 
-        <Select
-          name="language"
-          label="Language"
-          placeholder="Select a language"
-          popover={{
-            placeholder: "Search language",
-            notfound: "No results found.",
-          }}
-          form={form}
-        />
+      <Select
+        name="language"
+        label="Language"
+        placeholder="Select a language"
+        popover={{
+          placeholder: "Search language",
+          notfound: "No results found.",
+        }}
+        form={form}
+      />
 
-        <div className="text-center">
-          <Button type="submit">Sign in</Button>
-        </div>
-      </form>
-    </FormReactHookForm>
+      <div className="text-center">
+        <Button type="submit">Sign in</Button>
+      </div>
+    </Form>
   )
 }
