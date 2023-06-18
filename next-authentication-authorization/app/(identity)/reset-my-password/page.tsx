@@ -16,21 +16,21 @@ export default function Page() {
         💪🏼
       </Link>
       <Link
-        href="/forgot-my-password"
+        href="/login"
         className={cn(
           buttonVariants({ variant: "ghost", size: "sm" }),
           "absolute right-8 top-8"
         )}
       >
-        Forgot you password?
+        Sign in
       </Link>
       <div className="mx-auto flex min-h-screen max-w-[350px] flex-col justify-center space-y-6">
         <div className="flex flex-col space-y-2 text-center">
           <h1 className="text-2xl font-semibold tracking-tight">
-            Welcome back!
+            Choose a new password
           </h1>
           <p className="text-sm text-muted-foreground">
-            Enter your email and password
+            Enter your email, emailed code and new password
           </p>
         </div>
 

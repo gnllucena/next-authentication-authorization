@@ -1,10 +1,11 @@
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import Link from "next/link";
+import Link from "next/link"
+
+import { cn } from "@/lib/utils"
+import { buttonVariants } from "@/components/ui/button"
 
 export default function IdentityLayout(props: {
-  children: React.ReactNode;
-  modal: React.ReactNode;
+  children: React.ReactNode
+  modal: React.ReactNode
 }) {
   return (
     <div className="container relative h-fit min-w-[375px] flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
@@ -21,7 +22,7 @@ export default function IdentityLayout(props: {
           href="/"
           className={cn(
             buttonVariants({ variant: "ghost", size: "sm" }),
-            "absolute left-8 top-8 text-lg",
+            "absolute left-8 top-8 text-lg"
           )}
         >
           💪🏼
@@ -31,5 +32,5 @@ export default function IdentityLayout(props: {
       {props.children}
       {props.modal}
     </div>
-  );
+  )
 }
