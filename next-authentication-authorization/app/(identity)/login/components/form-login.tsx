@@ -33,11 +33,7 @@ type LoginSchema = z.infer<typeof loginSchema>
 export function Form() {
   const form = useForm<LoginSchema>({
     resolver: zodResolver(loginSchema),
-    defaultValues: {
-      email: "gnllucena@gmail.com",
-      dob: new Date(),
-      language: "en",
-    } as Partial<LoginSchema>,
+    defaultValues: {} as Partial<LoginSchema>,
   })
 
   function onSubmit(data: LoginSchema) {
@@ -53,7 +49,7 @@ export function Form() {
 
   return (
     <FormReactHookForm {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 pt-4">
         <Input
           name="email"
           label="Email"
@@ -72,6 +68,10 @@ export function Form() {
           name="language"
           label="Language"
           placeholder="Select a language"
+          popover={{
+            placeholder: "Search language",
+            notfound: "No results found.",
+          }}
           form={form}
         />
 

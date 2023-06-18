@@ -30,10 +30,20 @@ interface SelectProps {
   name: string
   label: string
   placeholder?: string
+  popover: {
+    placeholder: string
+    notfound: string
+  }
   form: UseFormReturn<any>
 }
 
-export function Select({ name, label, placeholder, form }: SelectProps) {
+export function Select({
+  name,
+  label,
+  placeholder,
+  popover,
+  form,
+}: SelectProps) {
   const languages = [
     { label: "English", value: "en" },
     { label: "French", value: "fr" },
@@ -73,10 +83,10 @@ export function Select({ name, label, placeholder, form }: SelectProps) {
                 </Button>
               </FormControl>
             </PopoverTrigger>
-            <PopoverContent className="w-full p-0 self-auto">
+            <PopoverContent className="w-[200px] p-0" align="start">
               <Command>
-                <CommandInput placeholder="Search language..." />
-                <CommandEmpty>No language found.</CommandEmpty>
+                <CommandInput placeholder={popover.placeholder} />
+                <CommandEmpty>{popover.notfound}</CommandEmpty>
                 <CommandGroup>
                   {languages.map((language) => (
                     <CommandItem
