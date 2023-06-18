@@ -3,6 +3,8 @@ import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 
+import { FormLogin } from "./components/form-login"
+
 export default function Page() {
   return (
     <>
@@ -32,6 +34,8 @@ export default function Page() {
           <p className="text-sm text-muted-foreground">
             Enter your email and password
           </p>
+
+          <FormLogin />
         </div>
 
         <p className="px-8 text-center text-sm text-muted-foreground">
