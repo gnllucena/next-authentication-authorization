@@ -48,7 +48,7 @@ export function FormLogin() {
   }
 
   return (
-    <Form onSubmit={onSubmit} form={form}>
+    <Form configuration={form} onSubmit={onSubmit}>
       <Input name="email" label="Email" placeholder="Your email" form={form} />
 
       <DatePicker
