@@ -1,6 +1,6 @@
 "use client"
 
-import { Control, ControllerRenderProps, UseFormReturn } from "react-hook-form"
+import { useFormContext } from "react-hook-form"
 
 import {
   FormControl,
@@ -15,20 +15,30 @@ import { Input as InputUI } from "../ui/input"
 interface FormInputProps {
   name: string
   label: string
+  type?: "text" | "email" | "password"
   placeholder?: string
-  form: UseFormReturn<any>
 }
 
-export function Input({ name, label, placeholder, form }: FormInputProps) {
+export function Input({
+  name,
+  label,
+  type = "text",
+  placeholder,
+}: FormInputProps) {
+  const {
+    control,
+    formState: { isSubmitted, isSubmitting, errors },
+  } = useFormContext()
+
   return (
     <FormField
-      control={form.control}
+      control={control}
       name={name}
       render={({ field }) => (
         <FormItem>
           <FormLabel>{label}</FormLabel>
           <FormControl>
-            <InputUI placeholder={placeholder} {...field} />
+            <InputUI placeholder={placeholder} type={type} {...field} />
           </FormControl>
           <FormMessage />
         </FormItem>

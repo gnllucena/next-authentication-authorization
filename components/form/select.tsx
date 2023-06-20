@@ -1,7 +1,7 @@
 "use client"
 
 import { Check, ChevronsUpDown } from "lucide-react"
-import { UseFormReturn } from "react-hook-form"
+import { useFormContext } from "react-hook-form"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -34,16 +34,15 @@ interface SelectProps {
     placeholder: string
     notfound: string
   }
-  form: UseFormReturn<any>
 }
 
-export function Select({
-  name,
-  label,
-  placeholder,
-  popover,
-  form,
-}: SelectProps) {
+export function Select({ name, label, placeholder, popover }: SelectProps) {
+  const {
+    control,
+    setValue,
+    formState: { isSubmitted, isSubmitting, errors },
+  } = useFormContext()
+
   const languages = [
     { label: "English", value: "en" },
     { label: "French", value: "fr" },
@@ -58,7 +57,7 @@ export function Select({
 
   return (
     <FormField
-      control={form.control}
+      control={control}
       name={name}
       render={({ field }) => (
         <FormItem className="flex flex-col">
@@ -93,7 +92,7 @@ export function Select({
                       value={language.value}
                       key={language.value}
                       onSelect={(value) => {
-                        form.setValue(name, value)
+                        setValue(name, value)
                       }}
                     >
                       <Check

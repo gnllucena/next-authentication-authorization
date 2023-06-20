@@ -26,7 +26,7 @@ export default function Page() {
       >
         Forgot you password?
       </Link>
-      <div className="mx-auto flex min-h-screen max-w-[350px] flex-col justify-center space-y-6">
+      <div className="mx-auto flex min-h-screen max-w-[350px] flex-col justify-center">
         <div className="flex flex-col space-y-2 ">
           <h1 className="text-center text-2xl font-semibold tracking-tight">
             Welcome back!
@@ -35,10 +35,12 @@ export default function Page() {
             Please enter your details to access your account.
           </p>
 
-          <FormLogin />
+          <div className="pt-4">
+            <FormLogin />
+          </div>
         </div>
 
-        <p className="px-8 text-center text-sm text-muted-foreground">
+        <p className="mt-8 px-8 text-center text-sm text-muted-foreground">
           By clicking continue, you agree to our{" "}
           <Link
             href="/terms-of-service"
