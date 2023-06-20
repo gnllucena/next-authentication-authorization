@@ -3,6 +3,8 @@ import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 
+import { FormCreateNewAccount } from "./components/form-create-new-account"
+
 export default function Page() {
   return (
     <>
@@ -24,17 +26,21 @@ export default function Page() {
       >
         Sign in
       </Link>
-      <div className="mx-auto flex min-h-screen max-w-[350px] flex-col justify-center space-y-6">
-        <div className="flex flex-col space-y-2 text-center">
-          <h1 className="text-2xl font-semibold tracking-tight">
+      <div className="mx-auto flex min-h-screen max-w-[350px] flex-col justify-center">
+        <div className="flex flex-col space-y-2 ">
+          <h1 className="text-center text-2xl font-semibold tracking-tight">
             Create an account
           </h1>
-          <p className="text-sm text-muted-foreground">
-            Please enter your information below to create your account.
+          <p className="text-center text-sm text-muted-foreground">
+            Please enter your information below to create an account
           </p>
+
+          <div className="pt-4">
+            <FormCreateNewAccount />
+          </div>
         </div>
 
-        <p className="px-8 text-center text-sm text-muted-foreground">
+        <p className="mt-8 px-8 text-center text-sm text-muted-foreground">
           By clicking continue, you agree to our{" "}
           <Link
             href="/terms-of-service"
