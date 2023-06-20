@@ -2,7 +2,7 @@
 
 import { format } from "date-fns"
 import { CalendarIcon } from "lucide-react"
-import { UseFormReturn } from "react-hook-form"
+import { UseFormReturn, useFormContext } from "react-hook-form"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -24,18 +24,17 @@ interface DatePickerProps {
   name: string
   label: string
   placeholder?: string
-  form: UseFormReturn<any>
 }
 
-export function DatePicker({
-  name,
-  label,
-  placeholder,
-  form,
-}: DatePickerProps) {
+export function DatePicker({ name, label, placeholder }: DatePickerProps) {
+  const {
+    control,
+    formState: { isSubmitted, isSubmitting, errors },
+  } = useFormContext()
+
   return (
     <FormField
-      control={form.control}
+      control={control}
       name={name}
       render={({ field }) => (
         <FormItem className="flex flex-col">

@@ -12,19 +12,13 @@ import {
 
 import { Input as InputUI } from "../ui/input"
 
-interface FormInputProps {
+interface PasswordProps {
   name: string
   label: string
-  type?: "text" | "email" | "password"
   placeholder?: string
 }
 
-export function Input({
-  name,
-  label,
-  type = "text",
-  placeholder,
-}: FormInputProps) {
+export function Password({ name, label, placeholder }: PasswordProps) {
   const {
     control,
     formState: { isSubmitted, isSubmitting, errors },
@@ -38,7 +32,7 @@ export function Input({
         <FormItem>
           <FormLabel>{label}</FormLabel>
           <FormControl>
-            <InputUI placeholder={placeholder} type={type} {...field} />
+            <InputUI placeholder={placeholder} type="password" {...field} />
           </FormControl>
           <FormMessage />
         </FormItem>

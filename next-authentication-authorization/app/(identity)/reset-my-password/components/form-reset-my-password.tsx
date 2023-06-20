@@ -10,7 +10,7 @@ import { toast } from "@/components/ui/use-toast"
 import { Form } from "@/components/form/form"
 import { Input } from "@/components/form/input"
 
-const loginSchema = z.object({
+const resetMyPasswordSchema = z.object({
   email: z
     .string({
       required_error: VALIDATIONS.REQUIRED,
@@ -24,13 +24,16 @@ const loginSchema = z.object({
     })
     .min(6, VALIDATIONS.STRING.MIN.replace("${MIN}", "6"))
     .max(30, VALIDATIONS.STRING.MAX.replace("${MAX}", "30")),
-  code: z.optional(z.string()),
+  code: z
+    .string({ required_error: VALIDATIONS.REQUIRED })
+    .min(6, VALIDATIONS.STRING.MIN.replace("${MIN}", "6"))
+    .max(50, VALIDATIONS.STRING.MAX.replace("${MAX}", "8")),
 })
 
-type LoginSchema = z.infer<typeof loginSchema>
+type ResetMyPasswordSchema = z.infer<typeof resetMyPasswordSchema>
 
-export function FormLogin() {
-  function onSubmit(data: LoginSchema) {
+export function FormResetMyPassowordLogin() {
+  function onSubmit(data: ResetMyPasswordSchema) {
     toast({
       title: "You submitted the following values:",
       description: (
@@ -43,9 +46,9 @@ export function FormLogin() {
 
   return (
     <Form
-      configuration={useForm<LoginSchema>({
-        resolver: zodResolver(loginSchema),
-        defaultValues: {} as Partial<LoginSchema>,
+      configuration={useForm<ResetMyPasswordSchema>({
+        resolver: zodResolver(resetMyPasswordSchema),
+        defaultValues: {} as Partial<ResetMyPasswordSchema>,
       })}
       onSubmit={onSubmit}
     >
@@ -55,7 +58,13 @@ export function FormLogin() {
         type="password"
         name="password"
         label="Password"
-        placeholder="Your password"
+        placeholder="Your new password"
+      />
+
+      <Input
+        name="code"
+        label="Code"
+        placeholder="The code we sent to your email"
       />
 
       <div className="text-center">

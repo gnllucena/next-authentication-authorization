@@ -63,7 +63,7 @@ export const Form = <T extends FieldValues>({
   return (
     <FormProvider {...configuration}>
       <form
-        className="space-y-6"
+        className="space-y-4"
         onSubmit={configuration.handleSubmit(onSubmit)}
         noValidate={true}
       >
