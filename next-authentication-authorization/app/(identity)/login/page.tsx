@@ -40,7 +40,7 @@ export default function Page() {
           </div>
         </div>
 
-        <p className="mt-4 px-8 text-center text-sm text-muted-foreground">
+        <p className="mt-8 px-8 text-center text-sm text-muted-foreground">
           By clicking continue, you agree to our{" "}
           <Link
             href="/terms-of-service"

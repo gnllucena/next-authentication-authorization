@@ -10,7 +10,7 @@ import { toast } from "@/components/ui/use-toast"
 import { Form } from "@/components/form/form"
 import { Input } from "@/components/form/input"
 
-const resetMyPasswordSchema = z.object({
+const forgotMyPasswordSchema = z.object({
   email: z
     .string({
       required_error: VALIDATIONS.REQUIRED,
@@ -18,22 +18,12 @@ const resetMyPasswordSchema = z.object({
     .email(VALIDATIONS.STRING.EMAIL)
     .min(6, VALIDATIONS.STRING.MIN.replace("${MIN}", "6"))
     .max(50, VALIDATIONS.STRING.MAX.replace("${MAX}", "50")),
-  password: z
-    .string({
-      required_error: VALIDATIONS.REQUIRED,
-    })
-    .min(6, VALIDATIONS.STRING.MIN.replace("${MIN}", "6"))
-    .max(30, VALIDATIONS.STRING.MAX.replace("${MAX}", "30")),
-  code: z
-    .string({ required_error: VALIDATIONS.REQUIRED })
-    .min(6, VALIDATIONS.STRING.MIN.replace("${MIN}", "6"))
-    .max(50, VALIDATIONS.STRING.MAX.replace("${MAX}", "8")),
 })
 
-type ResetMyPasswordSchema = z.infer<typeof resetMyPasswordSchema>
+type ForgotMyPasswordSchema = z.infer<typeof forgotMyPasswordSchema>
 
-export function FormResetMyPassowordLogin() {
-  function onSubmit(data: ResetMyPasswordSchema) {
+export function FormForgotMyPassword() {
+  function onSubmit(data: ForgotMyPasswordSchema) {
     toast({
       title: "You submitted the following values:",
       description: (
@@ -46,29 +36,16 @@ export function FormResetMyPassowordLogin() {
 
   return (
     <Form
-      configuration={useForm<ResetMyPasswordSchema>({
-        resolver: zodResolver(resetMyPasswordSchema),
-        defaultValues: {} as Partial<ResetMyPasswordSchema>,
+      configuration={useForm<ForgotMyPasswordSchema>({
+        resolver: zodResolver(forgotMyPasswordSchema),
+        defaultValues: {} as Partial<ForgotMyPasswordSchema>,
       })}
       onSubmit={onSubmit}
     >
       <Input name="email" label="Email" placeholder="Your email" />
 
-      <Input
-        type="password"
-        name="password"
-        label="Password"
-        placeholder="Your new password"
-      />
-
-      <Input
-        name="code"
-        label="Code"
-        placeholder="The code we sent to your email"
-      />
-
       <div className="text-center">
-        <Button type="submit">Reset your password</Button>
+        <Button type="submit">Send password reset instructions</Button>
       </div>
     </Form>
   )
